@@ -8,3 +8,16 @@ before_install:
 
 script:
     - docker run -e CI=true swarsa/docker-react-2020 npm run test
+
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-2"
+    app: "docker-react-2020"
+    env: "DockerReact2020-env"
+    bucket_name: "elasticbeanstalk-us-east-2-660892587531"
+    bucket_path: "docker-react-2020"
+    on: 
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    
